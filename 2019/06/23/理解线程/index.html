@@ -96,13 +96,13 @@
 
 
 
-  <meta name="description" content="杂七杂八的笔记 2 关于并发纯粹是个人理解，不一定对的  相关概念 进程：程序实例。 线程：从属于进程，是程序的实际执行者。一个进程至少包含一个主线程，也可以有更多的子线程。拥有自己的栈空间。 协程：比线程更加轻量级的存在，一个线程可以有多个协程。Go 语言在语言级别支持轻量级线程（也就是协程），叫goroutine。 携程：订机票旅游的，但个人推荐智行。 并发：在操作系统中，并发是指一个时间段中">
+  <meta name="description" content="相关概念 进程：程序实例。 线程：从属于进程，是程序的实际执行者。一个进程至少包含一个主线程，也可以有更多的子线程。拥有自己的栈空间。 协程：比线程更加轻量级的存在，一个线程可以有多个协程。Go 语言在语言级别支持轻量级线程（也就是协程），叫goroutine。 携程：订机票旅游的，但个人推荐智行。 并发：在操作系统中，并发是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都">
 <meta name="keywords" content="杂七杂八的学习笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解线程">
 <meta property="og:url" content="https://starrrrrrr.github.io/2019/06/23/理解线程/index.html">
 <meta property="og:site_name" content="Star Blog">
-<meta property="og:description" content="杂七杂八的笔记 2 关于并发纯粹是个人理解，不一定对的  相关概念 进程：程序实例。 线程：从属于进程，是程序的实际执行者。一个进程至少包含一个主线程，也可以有更多的子线程。拥有自己的栈空间。 协程：比线程更加轻量级的存在，一个线程可以有多个协程。Go 语言在语言级别支持轻量级线程（也就是协程），叫goroutine。 携程：订机票旅游的，但个人推荐智行。 并发：在操作系统中，并发是指一个时间段中">
+<meta property="og:description" content="相关概念 进程：程序实例。 线程：从属于进程，是程序的实际执行者。一个进程至少包含一个主线程，也可以有更多的子线程。拥有自己的栈空间。 协程：比线程更加轻量级的存在，一个线程可以有多个协程。Go 语言在语言级别支持轻量级线程（也就是协程），叫goroutine。 携程：订机票旅游的，但个人推荐智行。 并发：在操作系统中，并发是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553506297956-53cbdfd8-ec39-48f8-b47b-1541e3f3908d.jpeg#align=left&display=inline&height=276&name=2.jpg&originHeight=377&originWidth=500&size=22986&status=done&width=366">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553507133604-e26a77ad-0d9e-49e4-ba9b-81eb33e423f7.jpeg#align=left&display=inline&height=332&name=1.jpg&originHeight=453&originWidth=500&size=29873&status=done&width=366">
@@ -113,10 +113,10 @@
 <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553509780141-c4f01a24-3661-47f7-bda2-442561b4f8be.jpeg#align=left&display=inline&height=366&name=8.jpg&originHeight=500&originWidth=500&size=22482&status=done&width=366">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553514530803-52bc554f-28fe-4613-9c84-28909e83bdab.jpeg#align=left&display=inline&height=291&name=7.jpg&originHeight=291&originWidth=273&size=13904&status=done&width=273">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553514602306-c646e1b5-26d1-43f5-95c9-bd7985742384.jpeg#align=left&display=inline&height=247&name=a.1.jpg&originHeight=221&originWidth=393&size=41314&status=done&width=440">
-<meta property="og:updated_time" content="2019-06-23T07:13:15.487Z">
+<meta property="og:updated_time" content="2019-06-23T07:16:17.012Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解线程">
-<meta name="twitter:description" content="杂七杂八的笔记 2 关于并发纯粹是个人理解，不一定对的  相关概念 进程：程序实例。 线程：从属于进程，是程序的实际执行者。一个进程至少包含一个主线程，也可以有更多的子线程。拥有自己的栈空间。 协程：比线程更加轻量级的存在，一个线程可以有多个协程。Go 语言在语言级别支持轻量级线程（也就是协程），叫goroutine。 携程：订机票旅游的，但个人推荐智行。 并发：在操作系统中，并发是指一个时间段中">
+<meta name="twitter:description" content="相关概念 进程：程序实例。 线程：从属于进程，是程序的实际执行者。一个进程至少包含一个主线程，也可以有更多的子线程。拥有自己的栈空间。 协程：比线程更加轻量级的存在，一个线程可以有多个协程。Go 语言在语言级别支持轻量级线程（也就是协程），叫goroutine。 携程：订机票旅游的，但个人推荐智行。 并发：在操作系统中，并发是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都">
 <meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553506297956-53cbdfd8-ec39-48f8-b47b-1541e3f3908d.jpeg#align=left&display=inline&height=276&name=2.jpg&originHeight=377&originWidth=500&size=22986&status=done&width=366">
 
 
@@ -398,7 +398,7 @@
                 
               
 
-              <time title="创建时间：2019-06-23 15:04:41 / 修改时间：15:13:15" itemprop="dateCreated datePublished" datetime="2019-06-23T15:04:41+08:00">2019-06-23</time>
+              <time title="创建时间：2019-06-23 15:04:41 / 修改时间：15:16:17" itemprop="dateCreated datePublished" datetime="2019-06-23T15:04:41+08:00">2019-06-23</time>
             
 
             
@@ -437,9 +437,7 @@
       
 
       
-        <h1 id="杂七杂八的笔记-2"><a href="#杂七杂八的笔记-2" class="headerlink" title="杂七杂八的笔记 2"></a>杂七杂八的笔记 2</h1><p><a name="72fdb025"></a></p>
-<h1 id="关于并发"><a href="#关于并发" class="headerlink" title="关于并发"></a>关于并发</h1><p>纯粹是个人理解，不一定对的</p>
-<p><a name="8b1772dd"></a></p>
+        <p><a name="8b1772dd"></a></p>
 <h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><ul>
 <li>进程：程序实例。</li>
 <li>线程：从属于进程，是程序的实际执行者。一个进程至少包含一个主线程，也可以有更多的子线程。拥有自己的栈空间。</li>
@@ -528,6 +526,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/06/23/序言/" rel="prev" title="序言">
+                序言 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -597,12 +599,25 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
               
 
               
@@ -614,7 +629,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -678,7 +695,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#杂七杂八的笔记-2"><span class="nav-number">1.</span> <span class="nav-text">杂七杂八的笔记 2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于并发"><span class="nav-number">2.</span> <span class="nav-text">关于并发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关概念"><span class="nav-number">2.1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个人理解"><span class="nav-number">2.2.</span> <span class="nav-text">个人理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-没有使用线程的情况"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.没有使用线程的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用线程给其他任务提供机会，保持用户对程序的控制权"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.使用线程给其他任务提供机会，保持用户对程序的控制权</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#goroutine"><span class="nav-number">2.3.</span> <span class="nav-text">goroutine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#channel"><span class="nav-number">2.4.</span> <span class="nav-text">channel</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关概念"><span class="nav-number">1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个人理解"><span class="nav-number">2.</span> <span class="nav-text">个人理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-没有使用线程的情况"><span class="nav-number">2.1.</span> <span class="nav-text">1.没有使用线程的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用线程给其他任务提供机会，保持用户对程序的控制权"><span class="nav-number">2.2.</span> <span class="nav-text">2.使用线程给其他任务提供机会，保持用户对程序的控制权</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#goroutine"><span class="nav-number">3.</span> <span class="nav-text">goroutine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#channel"><span class="nav-number">4.</span> <span class="nav-text">channel</span></a></li></ol></div>
             
 
           </div>
