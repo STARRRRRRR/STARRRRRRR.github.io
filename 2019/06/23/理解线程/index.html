@@ -96,17 +96,28 @@
 
 
 
-  <meta name="description" content="The cleaner of SFA never give up">
-<meta name="keywords" content="student">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Star Blog">
-<meta property="og:url" content="https://starrrrrrr.github.io/index.html">
+  <meta name="description" content="杂七杂八的笔记 2 关于并发纯粹是个人理解，不一定对的  相关概念 进程：程序实例。 线程：从属于进程，是程序的实际执行者。一个进程至少包含一个主线程，也可以有更多的子线程。拥有自己的栈空间。 协程：比线程更加轻量级的存在，一个线程可以有多个协程。Go 语言在语言级别支持轻量级线程（也就是协程），叫goroutine。 携程：订机票旅游的，但个人推荐智行。 并发：在操作系统中，并发是指一个时间段中">
+<meta name="keywords" content="杂七杂八的学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解线程">
+<meta property="og:url" content="https://starrrrrrr.github.io/2019/06/23/理解线程/index.html">
 <meta property="og:site_name" content="Star Blog">
-<meta property="og:description" content="The cleaner of SFA never give up">
+<meta property="og:description" content="杂七杂八的笔记 2 关于并发纯粹是个人理解，不一定对的  相关概念 进程：程序实例。 线程：从属于进程，是程序的实际执行者。一个进程至少包含一个主线程，也可以有更多的子线程。拥有自己的栈空间。 协程：比线程更加轻量级的存在，一个线程可以有多个协程。Go 语言在语言级别支持轻量级线程（也就是协程），叫goroutine。 携程：订机票旅游的，但个人推荐智行。 并发：在操作系统中，并发是指一个时间段中">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553506297956-53cbdfd8-ec39-48f8-b47b-1541e3f3908d.jpeg#align=left&display=inline&height=276&name=2.jpg&originHeight=377&originWidth=500&size=22986&status=done&width=366">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553507133604-e26a77ad-0d9e-49e4-ba9b-81eb33e423f7.jpeg#align=left&display=inline&height=332&name=1.jpg&originHeight=453&originWidth=500&size=29873&status=done&width=366">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553506787960-8e16eea8-bef5-4243-b96e-e353e5ab15fd.jpeg#align=left&display=inline&height=366&name=3.jpg&originHeight=500&originWidth=500&size=34628&status=done&width=366">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553507525170-3ac8ee53-6012-4ef3-8f3f-245ac08a8f49.jpeg#align=left&display=inline&height=388&name=4.jpg&originHeight=388&originWidth=250&size=17024&status=done&width=250">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553508018329-58890324-4b91-4911-99a5-cebc2fdd4fde.jpeg#align=left&display=inline&height=366&name=5.jpg&originHeight=420&originWidth=420&size=23294&status=done&width=366">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553508199346-394b3c46-1afe-4af0-9111-71ded5725ef5.jpeg#align=left&display=inline&height=297&name=6.jpg&originHeight=406&originWidth=500&size=34914&status=done&width=366">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553509780141-c4f01a24-3661-47f7-bda2-442561b4f8be.jpeg#align=left&display=inline&height=366&name=8.jpg&originHeight=500&originWidth=500&size=22482&status=done&width=366">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553514530803-52bc554f-28fe-4613-9c84-28909e83bdab.jpeg#align=left&display=inline&height=291&name=7.jpg&originHeight=291&originWidth=273&size=13904&status=done&width=273">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553514602306-c646e1b5-26d1-43f5-95c9-bd7985742384.jpeg#align=left&display=inline&height=247&name=a.1.jpg&originHeight=221&originWidth=393&size=41314&status=done&width=440">
+<meta property="og:updated_time" content="2019-06-23T07:13:15.487Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Star Blog">
-<meta name="twitter:description" content="The cleaner of SFA never give up">
+<meta name="twitter:title" content="理解线程">
+<meta name="twitter:description" content="杂七杂八的笔记 2 关于并发纯粹是个人理解，不一定对的  相关概念 进程：程序实例。 线程：从属于进程，是程序的实际执行者。一个进程至少包含一个主线程，也可以有更多的子线程。拥有自己的栈空间。 协程：比线程更加轻量级的存在，一个线程可以有多个协程。Go 语言在语言级别支持轻量级线程（也就是协程），叫goroutine。 携程：订机票旅游的，但个人推荐智行。 并发：在操作系统中，并发是指一个时间段中">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553506297956-53cbdfd8-ec39-48f8-b47b-1541e3f3908d.jpeg#align=left&display=inline&height=276&name=2.jpg&originHeight=377&originWidth=500&size=22986&status=done&width=366">
 
 
 
@@ -114,7 +125,7 @@
 
   
   
-  <link rel="canonical" href="https://starrrrrrr.github.io/">
+  <link rel="canonical" href="https://starrrrrrr.github.io/2019/06/23/理解线程/">
 
 
 
@@ -124,7 +135,7 @@
   };
 </script>
 
-  <title>Star Blog</title>
+  <title>理解线程 | Star Blog</title>
   
 
 
@@ -172,8 +183,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -215,7 +225,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -328,9 +338,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -362,10 +372,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/23/理解线程/" class="post-title-link" itemprop="url">理解线程</a>
+          <h1 class="post-title" itemprop="name headline">理解线程
+
               
             
           </h1>
@@ -429,9 +437,7 @@
       
 
       
-        
-          
-            <h1 id="杂七杂八的笔记-2"><a href="#杂七杂八的笔记-2" class="headerlink" title="杂七杂八的笔记 2"></a>杂七杂八的笔记 2</h1><p><a name="72fdb025"></a></p>
+        <h1 id="杂七杂八的笔记-2"><a href="#杂七杂八的笔记-2" class="headerlink" title="杂七杂八的笔记 2"></a>杂七杂八的笔记 2</h1><p><a name="72fdb025"></a></p>
 <h1 id="关于并发"><a href="#关于并发" class="headerlink" title="关于并发"></a>关于并发</h1><p>纯粹是个人理解，不一定对的</p>
 <p><a name="8b1772dd"></a></p>
 <h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><ul>
@@ -474,8 +480,6 @@
 <p> <br>这里比较一下Sleep和Channel<del>（其实是没有必要的，主要是我想借机安利我最喜欢的纪录片</del><br><del><br></del><br><img src="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553514530803-52bc554f-28fe-4613-9c84-28909e83bdab.jpeg#align=left&display=inline&height=291&name=7.jpg&originHeight=291&originWidth=273&size=13904&status=done&width=273" alt="7.jpg">~~<br>有一天，古罗马四暴君开始在各自的时空开始他们的暴政<strong>（执行各自独立的协程）</strong></p>
 <p><img src="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553514602306-c646e1b5-26d1-43f5-95c9-bd7985742384.jpeg#align=left&display=inline&height=247&name=a.1.jpg&originHeight=221&originWidth=393&size=41314&status=done&width=440" alt="a.1.jpg"><br>如果都用一样的时间来标记他们的朝代的话，比如把四人都记录为执政十年<strong>（在程序最后运行Sleep(10)）</strong>，像Commodus（在位12年）和Nero（在位14年）就会平白无故少掉很多记录，而Elagabalus（在位4年）和Caligula（在位4年）则会空出一大段时间。<br>但使用Channel的话，好比史官记录编年史，必须有写入内容<strong>（ch &lt;- 1）</strong>，且各个时空的历史都这么做<strong>（遍历chs）</strong>，这样后世读史<strong>（ &lt;- ch）</strong>才不会因为没有记录卡住，也能了解完一段历史<strong>（保证完整执行程序）</strong>。这样做就跟加灵活。<br>在此安利cbbc良心纪录片《糟糕历史》：<a href="https://www.bilibili.com/bangumi/media/md125012/?from=search&seid=8186377212103249903" target="_blank" rel="noopener">链接</a></p>
 
-          
-        
       
     </div>
 
@@ -496,165 +500,39 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://starrrrrrr.github.io/2019/06/14/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content>
-      <meta itemprop="description" content="The cleaner of SFA never give up">
-      <meta itemprop="image" content="https://www.cr173.com/up/2017-5/201705311513333940870.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Star Blog">
-    </span>
-
-    
-      <header class="post-header">
-
         
+          
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/14/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-14 15:00:15" itemprop="dateCreated datePublished" datetime="2019-06-14T15:00:15+08:00">2019-06-14</time>
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/杂七杂八的学习笔记/" rel="tag"># 杂七杂八的学习笔记</a>
           
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/14/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -664,14 +542,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -691,8 +570,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -779,6 +667,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#杂七杂八的笔记-2"><span class="nav-number">1.</span> <span class="nav-text">杂七杂八的笔记 2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于并发"><span class="nav-number">2.</span> <span class="nav-text">关于并发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关概念"><span class="nav-number">2.1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个人理解"><span class="nav-number">2.2.</span> <span class="nav-text">个人理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-没有使用线程的情况"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.没有使用线程的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用线程给其他任务提供机会，保持用户对程序的控制权"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.使用线程给其他任务提供机会，保持用户对程序的控制权</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#goroutine"><span class="nav-number">2.3.</span> <span class="nav-text">goroutine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#channel"><span class="nav-number">2.4.</span> <span class="nav-text">channel</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -910,6 +815,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
 
   
 
@@ -925,6 +834,8 @@
 
   
 
+
+  
 
 
   
