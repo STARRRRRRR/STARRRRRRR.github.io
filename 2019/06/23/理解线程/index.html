@@ -113,7 +113,7 @@
 <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553509780141-c4f01a24-3661-47f7-bda2-442561b4f8be.jpeg#align=left&display=inline&height=366&name=8.jpg&originHeight=500&originWidth=500&size=22482&status=done&width=366">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553514530803-52bc554f-28fe-4613-9c84-28909e83bdab.jpeg#align=left&display=inline&height=291&name=7.jpg&originHeight=291&originWidth=273&size=13904&status=done&width=273">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/jpeg/205830/1553514602306-c646e1b5-26d1-43f5-95c9-bd7985742384.jpeg#align=left&display=inline&height=247&name=a.1.jpg&originHeight=221&originWidth=393&size=41314&status=done&width=440">
-<meta property="og:updated_time" content="2019-06-23T07:16:17.012Z">
+<meta property="og:updated_time" content="2019-06-23T07:32:17.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解线程">
 <meta name="twitter:description" content="相关概念 进程：程序实例。 线程：从属于进程，是程序的实际执行者。一个进程至少包含一个主线程，也可以有更多的子线程。拥有自己的栈空间。 协程：比线程更加轻量级的存在，一个线程可以有多个协程。Go 语言在语言级别支持轻量级线程（也就是协程），叫goroutine。 携程：订机票旅游的，但个人推荐智行。 并发：在操作系统中，并发是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都">
@@ -398,7 +398,7 @@
                 
               
 
-              <time title="创建时间：2019-06-23 15:04:41 / 修改时间：15:16:17" itemprop="dateCreated datePublished" datetime="2019-06-23T15:04:41+08:00">2019-06-23</time>
+              <time title="创建时间：2019-06-23 15:04:41 / 修改时间：15:32:17" itemprop="dateCreated datePublished" datetime="2019-06-23T15:04:41+08:00">2019-06-23</time>
             
 
             
@@ -443,11 +443,12 @@
 <li>线程：从属于进程，是程序的实际执行者。一个进程至少包含一个主线程，也可以有更多的子线程。拥有自己的栈空间。</li>
 <li>协程：比线程更加轻量级的存在，一个线程可以有多个协程。Go 语言在语言级别支持轻量级线程（也就是协程），叫goroutine。</li>
 <li><del>携程：订机票旅游的，但个人推荐智行。</del></li>
-<li>并发：在<a href="https://baike.baidu.com/item/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F" target="_blank" rel="noopener">操作系统</a>中，并发是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都是在同一个<a href="https://baike.baidu.com/item/%E5%A4%84%E7%90%86%E6%9C%BA" target="_blank" rel="noopener">处理机</a>上运行，但任一个时刻点上只有一个程序在处理机上运行。</li>
-</ul>
+<li>并发：在<a href="https://baike.baidu.com/item/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F" target="_blank" rel="noopener">操作系统</a>中，并发是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都是在同一个<a href="https://baike.baidu.com/item/%E5%A4%84%E7%90%86%E6%9C%BA" target="_blank" rel="noopener">处理机</a>上运行，但任一个时刻点上只有一个程序在处理机上运行。<a id="more"></a>
 <blockquote>
 <p>与传统的系统级线程和进程相比，协程的大优势在于其“轻量级”，可以轻松创建上百万个而不会导致系统资源衰竭，而线程和进程通常多也不能超过1万个。这也是协程也叫轻量级线程的原因。 </p>
 </blockquote>
+</li>
+</ul>
 <p><a name="168d3ca3"></a></p>
 <h2 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h2><p><a name="51eec48c"></a></p>
 <h3 id="1-没有使用线程的情况"><a href="#1-没有使用线程的情况" class="headerlink" title="1.没有使用线程的情况"></a>1.没有使用线程的情况</h3><p><strong><br>比如，有一天你打开了一个</strong>游戏（进程）**</p>
@@ -599,7 +600,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -631,7 +632,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
