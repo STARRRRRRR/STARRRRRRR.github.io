@@ -345,6 +345,189 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://starrrrrrr.github.io/2019/06/24/几种链表题的解法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content="The cleaner of SFA never give up">
+      <meta itemprop="image" content="https://www.cr173.com/up/2017-5/201705311513333940870.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Star Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/24/几种链表题的解法/" class="post-title-link" itemprop="url">几种链表题的解法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-24 17:29:43" itemprop="dateCreated datePublished" datetime="2019-06-24T17:29:43+08:00">2019-06-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-25 19:30:48" itemprop="dateModified" datetime="2019-06-25T19:30:48+08:00">2019-06-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构与算法/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a name="Wcfn7"></a></p>
+<h1 id="1-找到链表的倒数第n个结点"><a href="#1-找到链表的倒数第n个结点" class="headerlink" title="1.找到链表的倒数第n个结点"></a>1.找到链表的倒数第n个结点</h1><p>使用两个指针fast和slow指向链表表头，仅当fast移动n次后再移动slow。当fast到达表尾时，slow指向链表倒数第n个结点。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * type ListNode struct &#123;</span></span><br><span class="line"><span class="comment"> *     Val int</span></span><br><span class="line"><span class="comment"> *     Next *ListNode</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NthNodeFromEnd</span><span class="params">(head *ListNode, n <span class="keyword">int</span>)</span> <span class="title">ListNode</span></span> &#123;</span><br><span class="line">    fast, slow := head, head;</span><br><span class="line">    <span class="keyword">for</span> fast.Next != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> n&gt;<span class="number">1</span> &#123;</span><br><span class="line">            fast=fast.Next</span><br><span class="line">            n--</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            fast=fast.Next</span><br><span class="line">            slow=slow.Next</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> slow</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同样的方法可以解决好几个leetcode的相关问题<br><img src="https://cdn.nlark.com/yuque/0/2019/png/205830/1561370344691-0bb219cb-166a-475e-97af-c71682f03d67.png#align=left&display=inline&height=600&name=2.PNG&originHeight=600&originWidth=716&size=42877&status=done&width=716" alt="2.PNG"></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/06/24/几种链表题的解法/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://starrrrrrr.github.io/2019/06/23/单身狗就应该用链表啊混蛋！/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -390,12 +573,24 @@
                 
               
 
-              <time title="创建时间：2019-06-23 15:23:35 / 修改时间：15:41:53" itemprop="dateCreated datePublished" datetime="2019-06-23T15:23:35+08:00">2019-06-23</time>
+              <time title="创建时间：2019-06-23 15:23:35" itemprop="dateCreated datePublished" datetime="2019-06-23T15:23:35+08:00">2019-06-23</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-24 17:23:07" itemprop="dateModified" datetime="2019-06-24T17:23:07+08:00">2019-06-24</time>
               
             
           </span>
@@ -1016,7 +1211,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1058,7 +1253,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
